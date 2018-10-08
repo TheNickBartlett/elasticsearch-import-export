@@ -1,0 +1,3 @@
+go run export.go -index="v1_1__my_index_name" -query="{\"terms\":{\"myField\":[myFieldValue]}}" -output="./output.json.gz"
+
+go run import.go -index="v1_1__my_index_name" -type="document" -file="./output.json.gz"

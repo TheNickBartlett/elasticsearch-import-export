@@ -71,7 +71,7 @@ func printUsage() {
 func checkConnectivity() {
 	resp, err := http.Get(*host)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)

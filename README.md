@@ -1,4 +1,4 @@
-# Overview
+# Overview (export.go)
 Provides a script that queries Elasticsearch for documents based on the given query, and outputs the results to a new line separated gzip json file
 
 Run `go run export.go -h` for all command line argument options
@@ -19,3 +19,6 @@ E.g. `{"terms":{"type":["a","b","c"]}}`
 
 ## Example Usage
 `go run export.go -query="{\"terms\":{\"type\":[\"a\",\"b\",\"c\"]}}"`
+
+# Overview (import.go)
+Soon(tm)
