@@ -1,3 +1,84 @@
-go run export.go -index="v1_1__my_index_name" -query="{\"terms\":{\"myField\":[myFieldValue]}}" -output="./output.json.gz"
+v1_3__apostle-roles-test              role              investigation
+v1_4__apostle-documents-test          document          investigation
+v1_1__apostle-actors-test             actor             investigation
+v1_1__apostle-observations-test       observation       investigation
+v1_13__apostle-events-test            event             investigation
+v1_2__apostle-observation-series-test series            investigation
+v1_3__apostle-images-test             image             investigation
+v1_2__apostle-accounts-test           account           investigation
+v1_2__apostle-communities-test        community         investigation
+v1_3__apostle-connections-test        connection        investigation
+v1_1__apostle-quote-documents-en-test quote-document    -
+v1_3__apostle-relationships-test      relationship      investigation
+v1_9__apostle-activities-test         activity          investigation
 
-go run import.go -index="v1_1__my_index_name" -type="document" -file="./output.json.gz"
+go run export.go -index="v1_3__apostle-roles-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/roles.json.gz"
+go run export.go -index="v1_4__apostle-documents-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/documents.json.gz"
+go run export.go -index="v1_1__apostle-actors-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/actors.json.gz"
+go run export.go -index="v1_1__apostle-observations-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/observations.json.gz"
+go run export.go -index="v1_13__apostle-events-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/events.json.gz"
+go run export.go -index="v1_2__apostle-observation-series-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/series.json.gz"
+go run export.go -index="v1_3__apostle-images-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/images.json.gz"
+go run export.go -index="v1_2__apostle-accounts-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/accounts.json.gz"
+go run export.go -index="v1_2__apostle-communities-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/communities.json.gz"
+go run export.go -index="v1_3__apostle-connections-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/connections.json.gz"
+go run export.go -index="v1_3__apostle-relationships-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/relationships.json.gz"
+go run export.go -index="v1_9__apostle-activities-test" -query="{\"terms\":{\"investigation\":[105]}}" -output="../import/activities.json.gz"
+
+go run import.go -index="v1_4__apostle-documents-test" -type="document" -file="documents.json.gz"
+go run import.go -index="v1_1__apostle-actors-test" -type="actor" -file="actors.json.gz"
+go run import.go -index="v1_2__apostle-accounts-test" -type="account" -file="accounts.json.gz"
+go run import.go -index="v1_3__apostle-roles-test" -type="role" -file="roles.json.gz"
+go run import.go -index="v1_2__apostle-communities-test" -type="community" -file="communities.json.gz"
+go run import.go -index="v1_13__apostle-events-test" -type="event" -file="events.json.gz"
+go run import.go -index="v1_3__apostle-relationships-test" -type="relationship" -file="relationships.json.gz"
+go run import.go -index="v1_9__apostle-activities-test" -type="activity" -file="activities.json.gz"
+go run import.go -index="v1_1__apostle-observations-test" -type="observation" -file="observations.json.gz"
+go run import.go -index="v1_2__apostle-observation-series-test" -type="series" -file="series.json.gz"
+go run import.go -index="v1_3__apostle-images-test" -type="image" -file="images.json.gz"
+go run import.go -index="v1_3__apostle-connections-test" -type="connection" -file="connections.json.gz"
+
+
+go run export.go -index="documents_v2" -query="{\"bool\":{\"filter\":[{\"term\":{\"sourceId\":1132}},{\"range\":{\"publicationTime\":{\"gte\":\"1538352000\",\"lt\":\"1539041829\"}}}]}}" -output="../import/documents.json.gz" -host="https://vpc-discove-elasti-ayhq2vfpaboe-t4usxcahoz2tb22m4gic42cdfe.ap-southeast-2.es.amazonaws.com"
+go run import.go -index="documents_v2" -type="doc" -file="documents.json.gz"
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "term": {
+                        "sourceId": 1132
+                    }
+                },{
+                    "range": {
+                        "publicationTime": {
+                            "gte": "1538352000",
+                            "lt": "1539041829"
+                        }
+                    }
+                }
+            ]            
+        }
+    }
+}
+
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "term": {
+                        "sourceId": 1132
+                    }
+                },{
+                    "range": {
+                        "publicationTime": {
+                            "gte": "1538352000",
+                            "lt": "1539041829"
+                        }
+                    }
+                }
+            ]            
+        }
+    }
+}
