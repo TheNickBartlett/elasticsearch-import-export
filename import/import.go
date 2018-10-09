@@ -14,8 +14,7 @@ import (
 )
 
 var host = flag.String("host", "http://localhost:9200", "Fully qualified Elasticsearch host and port")
-var importFileDir = flag.String("dir", ".", "directory containing json.gz export files to import. Mutually exclusive with the file flag.")
-var importFileName = flag.String("file", "", "specific json.gz file name containing documents to import. Mutually exclusive with the dir flag.")
+var importFileName = flag.String("file", "", "specific json.gz file name containing documents to import. Can be relative or absolute.")
 var index = flag.String("index", "", "the name of the index documents will be created in")
 var docType = flag.String("type", "", "the name of the type to give to new documents when indexing them")
 
@@ -112,14 +111,13 @@ func importBatch(documents []string) {
 			fmt.Println(err)
 		}
 
-		m["sourceId"] = 50
-
-		iri := m["iri"].(string)
+		customImportLogic(&m)
+		documentID := produceDocumentID(&m, document)
 
 		meta := bulkIndexRequestMetadata{
 			Index:   *index,
 			DocType: *docType,
-			ID:      iri,
+			ID:      documentID,
 		}
 		item := bulkIndexRequestItem{
 			Index: meta,
@@ -150,4 +148,13 @@ func importBatch(documents []string) {
 	}
 
 	fmt.Printf("%s %d \n", resp.Status, resp.StatusCode)
+}
+
+func customImportLogic(document *map[string]interface{}) {
+	// Insert custom logic to manipulate the resulting document here
+}
+
+func produceDocumentID(document *map[string]interface{}, sourceDocument string) string {
+	// Insert custom logic to generate a document ID here
+	return ""
 }
