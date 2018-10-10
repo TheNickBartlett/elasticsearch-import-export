@@ -111,8 +111,8 @@ func importBatch(documents []string) {
 			fmt.Println(err)
 		}
 
-		customImportLogic(&m)
-		documentID := produceDocumentID(&m, document)
+		customImportLogic(m)
+		documentID := produceDocumentID(m, document)
 
 		meta := bulkIndexRequestMetadata{
 			Index:   *index,
@@ -146,15 +146,19 @@ func importBatch(documents []string) {
 		fmt.Println(err)
 		return
 	}
+	defer resp.Body.Close()
 
 	fmt.Printf("%s %d \n", resp.Status, resp.StatusCode)
 }
 
-func customImportLogic(document *map[string]interface{}) {
+func customImportLogic(document map[string]interface{}) {
 	// Insert custom logic to manipulate the resulting document here
+
+	//document["myField"] = "my new value"
 }
 
-func produceDocumentID(document *map[string]interface{}, sourceDocument string) string {
+func produceDocumentID(document map[string]interface{}, sourceDocument string) string {
 	// Insert custom logic to generate a document ID here
-	return ""
+
+	return "generated or computed document ID here"
 }
