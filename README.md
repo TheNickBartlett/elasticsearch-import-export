@@ -15,7 +15,7 @@ The relative or absolute path to the target output file. E.g. `./output.json.gz`
 
 ### `-query`
 The Elasticsearch JSON query to use to limit documents, minus the outer `query` object. Note, quotes must be escaped.
-E.g. `{"terms":{"type":["a","b","c"]}}`
+E.g. `{\"terms\":{\"type\":[\"a\",\"b\",\"c\"]}}`
 
 ## Example Usage
 `./export -index="myindex" -query="{\"terms\":{\"type\":[\"a\",\"b\",\"c\"]}}" -host="https://my-aws-es-cluster.region.es.amazonaws.com" -output="./documents.json.gz"` 
